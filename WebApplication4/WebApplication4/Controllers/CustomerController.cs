@@ -10,19 +10,27 @@ using System.Configuration;
 using WebApplication4.Models;
 using System.Text.RegularExpressions;
 
+
 namespace WebApplication4.Controllers
 {
     public class CustomerController : Controller
     {
         private Models.Training_Orders_Engine_SandboxEntities ent = new Models.Training_Orders_Engine_SandboxEntities();
-       
-        public ActionResult GetData()
-        {            
-            
-            var ent = new Models.Training_Orders_Engine_SandboxEntities();
-            return View(ent.Customers.ToList());
+
+        public ActionResult HomePage()
+        {
+            return View();
         }
-        
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        public ActionResult GetData()
+        {                
+            return View(ent.Customers.ToList());
+        }        
         public ActionResult InsertData()
         {          
             return View();
@@ -34,14 +42,10 @@ namespace WebApplication4.Controllers
             if (!ModelState.IsValid)
             {
                 return View("InsertData");
-            }
-            
+            }            
                 ent.Customers.Add(cust);
                 ent.SaveChanges();
-                return RedirectToAction("GetData");
-        
-            
-            
+                return RedirectToAction("GetData");   
         }
         
         public ActionResult Delete(int id)
@@ -77,11 +81,9 @@ namespace WebApplication4.Controllers
             return RedirectToAction("GetData");
         }
 
-        //public ActionResult DropDownList()
-        //{
-        //    Customer cust = new Customer();
-        //    cust.CountryList.
-        //}
+        
+
+
 
     }
 }

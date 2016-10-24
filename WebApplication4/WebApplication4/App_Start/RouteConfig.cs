@@ -20,7 +20,7 @@ namespace WebApplication4
             routes.MapRoute(
                 name: "Customer",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Customer", action = "InsertData", id = UrlParameter.Optional }
+                defaults: new { controller = "Customer", action = "HomePage", id = UrlParameter.Optional }
             );
         }
     }

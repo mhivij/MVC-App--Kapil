@@ -106,6 +106,6 @@ namespace WebApplication4.Models
         [Required]
         public string ModifiedBy { get; set; }
 
-        public SelectList CountryList { get; set; }
+        
     }
 }
