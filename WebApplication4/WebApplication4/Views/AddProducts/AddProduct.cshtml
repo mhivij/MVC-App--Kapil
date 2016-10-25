@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "AddProduct";
+}
+
+<h2>AddProduct</h2>
+@Html.Label("Product Category")
+@Html.TextBox("Product Category", "")     
+<input type="submit" value="Add" class="btn btn-default" />
+<br />
+<br />
+@{
+    var listItems = new List<SelectListItem>
+        {
+              new SelectListItem { Text = "Home To School", Value = "0" },
+              new SelectListItem { Text = "School To Home", Value = "1" }
+        };
+}
+@Html.Label("Product Category")
+@Html.DropDownList("Product Category", new SelectList(listItems, "Value", "Text"), new {onchange = "getAlldata()"})<br />
+@Html.Label("Product Name")
+@Html.TextBox("Product Category", "")<br />
+@Html.Label("Product Description")
+@Html.TextArea("Product Description")<br />
+@Html.Label("Product Category")
+@Html.TextBox("Product Category", "")<br />
+<script type="text/javascript">
+    function ShowHideDiv(chkTaxable) {
+        var dvTaxable = document.getElementById("dvTaxable");
+        dvTaxable.style.display = chkTaxable.checked ? "block" : "none"
+    }
+</script>
+<label for="chkTaxable">
+    Taxable?
+    <input type="checkbox" id="chkTaxable" onclick="ShowHideDiv(this)" />    
+</label>
+<br />
+<div id="dvTaxable" style="display: none">
+    Tax Description
+    <input type="text" />
+</div>
+<br />
+<input type="file" name="FileUpload" />
+<input type="submit" name="Submit" id="Submit" value="Upload" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+ 
+
+
+
+
+
+    @*@Html.DropDownList("Add Product", )*@

@@ -1,4 +1,3 @@
-c:\users\kapil.sharma\documents\visual studio 2015\Projects\WebApplication4\WebApplication4\obj\Debug\Orders Engine Module 2.csprojResolveAssemblyReference.cache
 c:\users\kapil.sharma\documents\visual studio 2015\Projects\WebApplication4\WebApplication4\bin\ApplicationInsights.config
 c:\users\kapil.sharma\documents\visual studio 2015\Projects\WebApplication4\WebApplication4\bin\roslyn\csc.exe
 c:\users\kapil.sharma\documents\visual studio 2015\Projects\WebApplication4\WebApplication4\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -74,3 +73,4 @@ C:\Users\kapil.sharma\Documents\Visual Studio 2015\Projects\WebApplication4\WebA
 C:\Users\kapil.sharma\Documents\Visual Studio 2015\Projects\WebApplication4\WebApplication4\bin\WebMatrix.WebData.xml
 C:\Users\kapil.sharma\Documents\Visual Studio 2015\Projects\WebApplication4\WebApplication4\bin\Org.Mentalis.Security.Cryptography.xml
 C:\Users\kapil.sharma\Documents\Visual Studio 2015\Projects\WebApplication4\WebApplication4\bin\Mono.Math.xml
+C:\Users\kapil.sharma\Documents\Visual Studio 2015\Projects\WebApplication4\WebApplication4\obj\Debug\Orders Engine Module 2.csprojResolveAssemblyReference.cache

@@ -1,0 +1,154 @@
+﻿@model WebApplication4.Models.Product
+
+@{
+    ViewBag.Title = "Add Product";
+}
+
+<h2>AddProduct</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Product</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductCategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductCategoryID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductCategoryID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductDescription, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ProductDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ProductDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @*<script type="text/javascript">
+            
+            
+                function uploadFile() {
+                    var input = document.getElementById('objFile');
+                    // var file = $("#objFile")[0].files[0];
+                    var file = input.files[0];
+                    fr = new FileReader();
+                    fr.onload = receivedText;
+                    //fr.readAsText(file);
+                    fr.readAsDataURL(file);
+                }
+
+                function receivedText() {
+                    var b64Data = fr.result.split(',');
+                    var contentType = 'image/jpeg';
+                    //document.getElementById('editor').appendChild(document.createTextNode(fr.result))
+                    var byteCharacters = atob(b64Data[1]);
+                    var byteNumbers = Array.prototype.map.call(byteCharacters,
+                                                   charCodeFromCharacter);
+                    var uint8Data = new Uint8Array(byteNumbers);
+                    var blob = b64toBlob(b64Data[1], contentType);
+                    var blobUrl = URL.createObjectURL(blob);
+                }
+
+                function charCodeFromCharacter(c) {
+                    return c.charCodeAt(0);
+                }
+
+                function b64toBlob(b64Data, contentType, sliceSize) {
+                    contentType = contentType || '';
+                    sliceSize = sliceSize || 1024;
+                    var byteCharacters = atob(b64Data);
+                    var byteArrays = [];
+
+                    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                        var slice = byteCharacters.slice(offset, offset + sliceSize);
+                        var byteNumbers = Array.prototype.map.call(slice, charCodeFromCharacter);
+                        var byteArray = new Uint8Array(byteNumbers);
+                        byteArrays.push(byteArray);
+                    }
+                    for (var i = 0; i < byteArray.length; i++) {
+                        alert(byteArray[i]);
+                    }
+
+                }
+            
+        </script>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProductImage, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.TextBoxFor(model => model.ProductImage, new { id = "objFile", type = "file"  } )*@
+                <label for="file">Upload Image</label>
+                <input type="file" name="file" id="file" />
+                <input type="submit" value="Upload Image" />
+                @*<input type="submit" name="Submit" id="Submit" value="Upload" onclick="uploadFile()" />*@
+                @*<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="fileUpload" />*@
+                
+                @Html.ValidationMessageFor(model => model.ProductImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            function ShowHideDiv(chkTaxable) {
+                var dvTaxable = document.getElementById("dvTaxable");
+                dvTaxable.style.display = chkTaxable.checked ? "block" : "none"
+            }
+        </script>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsTaxable, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IsTaxable, new { htmlAttributes = new { @id = "chkTaxable", @onclick = "ShowHideDiv(this)" } })
+                    @Html.ValidationMessageFor(model => model.IsTaxable, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div id="dvTaxable" class="form-group" style="display: none">
+            @Html.LabelFor(model => model.TaxAmout, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TaxAmout, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TaxAmout, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatedDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreatedDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreatedDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" onclick="location.href='@Url.Action("ProductsTable", "Products")'" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ProductsTable")
+</div>
