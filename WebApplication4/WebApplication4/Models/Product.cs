@@ -24,6 +24,6 @@ namespace WebApplication4.Models
         public System.DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
     
-        public virtual ProductCategory ProductCategory { get; set; }
+        public virtual ProductCategory ProductCategory1 { get; set; }
     }
 }

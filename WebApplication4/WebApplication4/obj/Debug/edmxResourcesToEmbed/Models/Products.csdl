@@ -8,7 +8,7 @@
     <Property Name="ProductCategoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CreatedBy" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="Product" Relationship="Self.FK_Products_ProductCategories" FromRole="ProductCategories" ToRole="Products" />
+    <NavigationProperty Name="Products" Relationship="Model2.FK_Products_ProductCategories1" FromRole="ProductCategory" ToRole="Product" />
   </EntityType>
   <EntityType Name="Product">
     <Key>
@@ -23,26 +23,26 @@
     <Property Name="TaxAmout" Type="Int32" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="CreatedBy" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="ProductCategory" Relationship="Self.FK_Products_ProductCategories" FromRole="Products" ToRole="ProductCategories" />
+    <NavigationProperty Name="ProductCategory1" Relationship="Model2.FK_Products_ProductCategories1" FromRole="Product" ToRole="ProductCategory" />
   </EntityType>
-  <Association Name="FK_Products_ProductCategories">
-    <End Role="ProductCategories" Type="Self.ProductCategory" Multiplicity="1" />
-    <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="ProductCategories">
-        <PropertyRef Name="ProductCategoryID" />
-      </Principal>
-      <Dependent Role="Products">
-        <PropertyRef Name="ProductID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="ProductsEntity" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="ProductCategories" EntityType="Self.ProductCategory" />
     <EntitySet Name="Products" EntityType="Self.Product" />
-    <AssociationSet Name="FK_Products_ProductCategories" Association="Self.FK_Products_ProductCategories">
-      <End Role="ProductCategories" EntitySet="ProductCategories" />
-      <End Role="Products" EntitySet="Products" />
+    <AssociationSet Name="FK_Products_ProductCategories1" Association="Model2.FK_Products_ProductCategories1">
+      <End Role="ProductCategory" EntitySet="ProductCategories" />
+      <End Role="Product" EntitySet="Products" />
     </AssociationSet>
   </EntityContainer>
+  <Association Name="FK_Products_ProductCategories1">
+    <End Type="Model2.ProductCategory" Role="ProductCategory" Multiplicity="1" />
+    <End Type="Model2.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductCategory">
+        <PropertyRef Name="ProductCategoryID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

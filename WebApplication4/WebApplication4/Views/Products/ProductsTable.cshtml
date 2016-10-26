@@ -7,7 +7,7 @@
 <h2>ProductsTable</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New", "AddProduct")
 </p>
 <table class="table">
     <tr>
@@ -35,9 +35,9 @@
         <th>
             @Html.DisplayNameFor(model => model.CreatedBy)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.ProductCategory.ProductCategoryName)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -51,13 +51,30 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ProductDescription)
-        </td>
+        </td>        
+        @{ 
+            var base64 = Convert.ToBase64String(item.ProductImage);
+            var imgsrc = String.Format("data:image/jpg;base64,{0}", base64);
+        }           
         <td>
-            @Html.DisplayFor(modelItem => item.ProductImage)
+            <img src="@imgsrc" style="max-height: 50%; max-width: 50%" />
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsTaxable)
-        </td>
+        @{
+            if (item.IsTaxable == true)
+            {
+                <td>
+                    Yes
+                </td>
+            }
+            else
+            {
+                <td>
+                    No
+                </td>
+            }
+         }
+
+
         <td>
             @Html.DisplayFor(modelItem => item.TaxAmout)
         </td>
@@ -67,13 +84,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.CreatedBy)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.ProductCategory.ProductCategoryName)
-        </td>
+        </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductID })
+            @Html.ActionLink("Edit", "EditProduct", new { id=item.ProductID }) |
+            @Html.ActionLink("Delete", "DeleteProduct", new { id=item.ProductID })
         </td>
     </tr>
 }
