@@ -60,7 +60,7 @@ namespace WebApplication4.Controllers
             }
 
             //if (ModelState.IsValid)
-            //{
+            
                 if (pr.IsTaxable == false)
                 {
                     pr.TaxAmout = 0;
@@ -70,27 +70,14 @@ namespace WebApplication4.Controllers
                 ent.SaveChanges();
                 return RedirectToAction("ProductsTable");
 
-            //}
-            //else
-            //{
-            //    return View();
-            //}
+            
+        }
 
-            //try
-            //{
-            //    if (pr.IsTaxable == false)
-            //    {
-            //        pr.TaxAmout = 0;
-            //    }
-            //    pr.ProductImage = data;
-            //    ent.Products.Add(pr);
-            //    ent.SaveChanges();
-            //    return RedirectToAction("ProductsTable");
-            //}
-            //catch
-            //{
-            //    return View();
-            //}
+
+        public ActionResult ProductDescription(int id)
+        {
+            Product pr = ent.Products.Find(id);
+            return View(pr);
         }
 
     
@@ -98,6 +85,7 @@ namespace WebApplication4.Controllers
         // GET: Products/Edit/5
         public ActionResult EditProduct(int id)
         {
+            Product prod = ent.Products.Find(id);
             List<SelectListItem> li = new List<SelectListItem>();
             var proC = ent.ProductCategories.ToList();
             foreach (var x in proC)
@@ -106,12 +94,21 @@ namespace WebApplication4.Controllers
 
             }
             ViewData["ProductCategoryName"] = li;
-            return View();
+            return View(prod);
         }
+
+
+
+        //public partial class Products : Product
+        //{
+        //  public int id { get; set; }
+        //  public HttpPostedFileBase uploadFile { get; set;}
+
+        //}
 
         // POST: Products/Edit/5
         [HttpPost]
-        public ActionResult EditProduct(int id, HttpPostedFile uploadFile, Product pr)
+        public ActionResult EditProduct(int id, Product products, HttpPostedFileBase uploadFile)
         {
             try
             {
@@ -119,28 +116,29 @@ namespace WebApplication4.Controllers
                 MemoryStream ms = new MemoryStream();
                 uploadFile.InputStream.CopyTo(ms);
                 byte[] data = ms.ToArray();
-                pr.ProductImage = data;
+                products.ProductImage = data;
 
                 var proC = ent.ProductCategories.ToList();
                 foreach (var x in proC)
                 {
                     if (Request["ProductCategoryName"].ToString() == x.ProductCategoryName.ToString())
                     {
-                        pr.ProductCategoryID = x.ProductCategoryID;
-                        pr.CreatedBy = x.CreatedBy;
+                        products.ProductCategoryID = x.ProductCategoryID;
+                        products.CreatedBy = x.CreatedBy;
                         break;
                     }
                 }
 
                 //if (ModelState.IsValid)
-                //{
-                if (pr.IsTaxable == false)
+                
+                if (products.IsTaxable == false)
                 {
-                    pr.TaxAmout = 0;
+                    products.TaxAmout = 0;
                 }
                 Product temp = ent.Products.Find(id);
                 ent.Products.Remove(temp);
-                ent.Products.Add(pr);
+                ent.Products.Add(products);
+                ent.SaveChanges();
                 return RedirectToAction("ProductsTable");
             }
             catch
@@ -152,7 +150,8 @@ namespace WebApplication4.Controllers
         // GET: Products/Delete/5
         public ActionResult DeleteProduct(int id)
         {
-            return View();
+            Product pr = ent.Products.Find(id);
+            return View(pr);
         }
 
         // POST: Products/Delete/5

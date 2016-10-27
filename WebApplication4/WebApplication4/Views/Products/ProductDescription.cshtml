@@ -1,0 +1,39 @@
+﻿@model WebApplication4.Models.Product
+
+@{
+    ViewBag.Title = "ProductDescription";
+}
+
+@*<h2>ProductDescription</h2>*@
+
+<div>
+    @*<h4>Product</h4>*@
+    <hr />
+    <div class="container-fluid">
+        <div class="row">            
+                <div class="col-sm-4">                   
+                    @{
+                        var item = Model.ProductImage;
+                        var base64 = Convert.ToBase64String(item);
+                        var imgsrc = String.Format("data:image/jpg;base64,{0}", base64);
+                    }
+                    <img src="@imgsrc" style="max-height: 50%; max-width: 50%" />
+                </div>
+                <div class="col-sm-8" style="background-color:lavenderblush;">
+                    <b>Name : </b>
+                    @Html.DisplayFor(model => model.ProductName) <br />
+                    <b>Description : </b>
+                    @Html.DisplayFor(model => model.ProductDescription) <br />
+                    <b>Price : </b><br />
+                    <b>Tax :  </b>
+                    @Html.DisplayFor(model => model.TaxAmout) <br />                    
+                </div>            
+          </div>
+        <div>
+     </div>
+</div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditProduct", new { id = Model.ProductID }) |
+    @Html.ActionLink("Back to List", "ProductsTable")
+</p>

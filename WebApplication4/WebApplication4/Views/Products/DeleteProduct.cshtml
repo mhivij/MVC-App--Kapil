@@ -11,6 +11,20 @@
     <h4>Product</h4>
     <hr />
     <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.ProductImage)
+        </dt>*@
+        @{
+            var item = Model.ProductImage;
+            var base64 = Convert.ToBase64String(item);
+            var imgsrc = String.Format("data:image/jpg;base64,{0}", base64);
+        }
+        
+        <dd>
+            <img src="@imgsrc" style="max-height: 50%; max-width: 50%" />
+            
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.ProductName)
         </dt>
@@ -19,13 +33,13 @@
             @Html.DisplayFor(model => model.ProductName)
         </dd>
 
-        @*<dt>
+        <dt>
             @Html.DisplayNameFor(model => model.ProductDescription)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.ProductDescription)
-        </dd>*@
+        </dd>
 
         @*<dt>
             @Html.DisplayNameFor(model => model.ProductImage)
