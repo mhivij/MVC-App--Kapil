@@ -68,9 +68,7 @@ namespace WebApplication4.Controllers
                 pr.CreatedDate = DateTime.Now;
                 ent.Products.Add(pr);
                 ent.SaveChanges();
-                return RedirectToAction("ProductsTable");
-
-            
+                return RedirectToAction("ProductsTable");           
         }
 
 
@@ -79,7 +77,32 @@ namespace WebApplication4.Controllers
             Product pr = ent.Products.Find(id);
             return View(pr);
         }
-
+        
+        //public void FilterResult()
+        //{
+        //    string str = "Electronics";
+        //    int id=0;
+        //    List<Product> li = new List<Product>();
+        //    var prod = ent.Products.ToList();
+        //    var proC = ent.ProductCategories.ToList();
+        //    foreach(var x in proC)
+        //    {
+        //        if (x.ProductCategoryName == str)
+        //        {
+        //            id = x.ProductCategoryID;
+        //            break;
+        //        }
+        //    }
+        //    foreach(var y  in prod)
+        //    {
+        //        if(y.ProductCategoryID==id)
+        //        {
+        //            li.Add(y);
+        //        }
+        //    }
+        //    HomeController hc = new HomeController();
+        //    hc.HomePage(li, "dummy");
+        //}
     
 
         // GET: Products/Edit/5
@@ -136,8 +159,7 @@ namespace WebApplication4.Controllers
                     products.TaxAmout = 0;
                 }
                 Product temp = ent.Products.Find(id);
-                ent.Products.Remove(temp);
-                ent.Products.Add(products);
+                UpdateModel(temp);
                 ent.SaveChanges();
                 return RedirectToAction("ProductsTable");
             }

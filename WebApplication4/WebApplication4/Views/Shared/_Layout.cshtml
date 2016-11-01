@@ -9,30 +9,7 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
-        </div>
-    </div>*@
-
-
-    <div class="jumbotron">
-        <div class="container text-center">
-            <h1>Online Store</h1>
-            <p>Mission, Vission & Values</p>
-        </div>
-    </div>
+  
 
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -46,34 +23,28 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href= '@Url.Action("HomePage", "Customer")'>Home</a></li>
+                    <li class="active"><a href= '@Url.Action("HomePage", "Home")'>Home</a></li>
                     <li><a href='@Url.Action("ProductsTable", "Products")'>Products</a></li>
-                    @*<li><a href="#">Electronics</a></li>
-                    <li><a href="#">Clothing</a></li>
-                    <li><a href="#">Home & Decor</a></li>
-                    <li><a href="#"></a>Lifestyle</li>
-                    <li><a href="#"></a>Accessories</li>*@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href='@Url.Action("Login", "Customer")'> Login</a></li>
+                    <li><a href='@Url.Action("InsertData", "Customer")'> Register</a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
                 </ul>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    @*<li class="active"><a href= '@Url.Action("HomePage", "Customer")'>Home</a></li>
-                    <li><a href='@Url.Action("ProductsTable", "Products")'>Products</a></li>*@
-                    <li><a href="#">Electronics</a></li>
-                    <li><a href="#">Clothing</a></li>
-                    <li><a href="#">Home & Decor</a></li>
-                    <li><a href="#">Lifestyle</a></li>
-                    <li><a href="#">Accessories</a></li>
+                    <li>@Html.ActionLink("Electronics", "HomePage", "Home", new { category = "Electronics" }, null) </li>
+                    <li>@Html.ActionLink("Clothing", "HomePage", "Home", new { category = "Clothing" }, null) </li>
+                    <li>@Html.ActionLink("Home & Decor", "HomePage", "Home", new { category = "Decor" }, null) </li>
+                    <li>@Html.ActionLink("Lifestyle", "HomePage", "Home", new { category = "Lifestyle" }, null) </li>
+                    <li>@Html.ActionLink("Accessories", "HomePage", "Home", new { category = "Accessories" }, null) </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-   
+
 
     @*<footer class="container-fluid text-center">
         <p>Online Store Copyright</p>
